@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,36 +13,33 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float gravityModifier;
     public bool isOnGround = true;
-    public bool hasCollectable;
     public bool gameOver = false;
-    public GameObject collectableIndicator;
     public int score = 0;
+    public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
+    public GameManager gameManager;
+   
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        // get the rigidbody component
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-
+        // jump mechanic
         if (hasJumped && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
-
         }
 
-        
-
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
-
-        //collectableIndicator.transform.position = transform.position + new Vector3(0, 2, 0);
     }
 
     // collision for ground and obstacles
@@ -51,34 +49,19 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            gameOver = true;
-            Debug.Log("Game Over!");
+            health--;
+            if (health <= 0)
+            {
+                gameOver = true;
+                gameManager.GameOver();
+                Debug.Log("Game Over!");
+            }
         }
     }
-
-    // trigger for collectables
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            hasCollectable = true;
-            Destroy(other.gameObject);
-            score++;
-            //StartCoroutine(CollectableCountdownRoutine());
-            //collectableIndicator.SetActive(true);
-        }
-    }
-
-    // coroutine for collectable countdown
-    IEnumerator CollectableCountdownRoutine()
-    {
-        yield return new WaitForSeconds(5);
-        hasCollectable = false;
-        collectableIndicator.SetActive(false);
-    }
-
+   
     // move input action
     public void OnMove(InputValue inputValue)
     {
@@ -90,5 +73,4 @@ public class PlayerController : MonoBehaviour
     {
         hasJumped = inputValue.isPressed;
     }
-
 }    

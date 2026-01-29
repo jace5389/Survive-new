@@ -12,52 +12,49 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     private int score;
     public GameObject titleScreen;
+    public GameObject gameOverScreen;
     private float spawnRate = 1.0f;
     private GameManager gameManager;
-    public int pointValue;
+    public int coinValue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      
+        // initialize game state
         score = 0;
         isGameActive = true;
         UpdateScore(0);
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        gameManager.UpdateScore(pointValue);
     }
 
     public void GameOver()
     {
-        gameOverText.gameObject.SetActive(true);
+        // handle game over state
+        gameOverScreen.gameObject.SetActive(true);
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
     }
 
     public void UpdateScore(int scoreToAdd)
     {
+        // update the player's score
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
-        UpdateScore(0);
+        
     }
 
     public void RestartGame()
     {
+        // restart the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void StartGame(int difficulty)
     {
+        // start the game with the specified difficulty
         isGameActive = true;
         score = 0;
         UpdateScore(0);
         titleScreen.gameObject.SetActive(false);
         spawnRate /= difficulty;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
