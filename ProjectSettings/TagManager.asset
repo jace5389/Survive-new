@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Obstacle
   - Heart
+  - Dollar
+  - Powerup
+  - Life
   layers:
   - Default
   - TransparentFX
