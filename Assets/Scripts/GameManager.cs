@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
         titleScreen.gameObject.SetActive(false);
         spawnRate /= difficulty;
-        settingsButton.gameObject.SetActive(false);
     }
 
     public void PlayGame()

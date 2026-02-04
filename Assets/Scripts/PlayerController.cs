@@ -61,16 +61,36 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-   
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            Destroy(other.gameObject);
+        }
+    }
+
     // move input action
     public void OnMove(InputValue inputValue)
     {
         horizontalInput = inputValue.Get<Vector2>().x;
     }
 
+    public void MoveInput(Vector2 vaule)
+    {
+        horizontalInput = vaule.x;
+    }
+
     // jump input action
     public void OnJump(InputValue inputValue)
     {
         hasJumped = inputValue.isPressed;
+    }
+
+    public void JumpInput(bool value)
+    {
+        hasJumped = value;
     }
 }    
