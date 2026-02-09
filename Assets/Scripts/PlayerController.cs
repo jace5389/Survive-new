@@ -14,14 +14,11 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
-    public int score = 0;
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
     public GameManager gameManager;
-   
-
-
+    
     void Start()
     {
         // get the rigidbody component
@@ -29,7 +26,6 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
     }
 
-    
     void Update()
     {
         // jump mechanic
@@ -59,16 +55,6 @@ public class PlayerController : MonoBehaviour
                 gameManager.GameOver();
                 Debug.Log("Game Over!");
             }
-        }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Coin"))
-        {
-            score++;
-            Debug.Log("Score: " + score);
-            Destroy(other.gameObject);
         }
     }
 

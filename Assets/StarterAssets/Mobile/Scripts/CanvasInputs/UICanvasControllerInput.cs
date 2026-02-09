@@ -13,11 +13,13 @@ namespace StarterAssets
             starterAssetsInputs.MoveInput(virtualMoveDirection.normalized);
         }
 
+        // Look is usually a delta value so we use Vector2
         public void VirtualLookInput(Vector2 virtualLookDirection)
         {
             //starterAssetsInputs.LookInput(virtualLookDirection);
         }
 
+        // Jump is triggered by a button press so bool is fine here
         public void VirtualJumpInput(bool virtualJumpState)
         {
             starterAssetsInputs.JumpInput(virtualJumpState);
@@ -27,7 +29,5 @@ namespace StarterAssets
         {
             //starterAssetsInputs.SprintInput(virtualSprintState);
         }
-        
     }
-
 }
