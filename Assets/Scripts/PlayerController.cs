@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             health--;
+            gameManager.UpdateLives(-1);
             if (health <= 0)
             {
                 gameOver = true;

@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject settingsScreen;
     private float spawnRate = 1.0f;
-    private GameManager gameManager;
     public int coinValue;
     public bool coinPowerup;
+    public PlayerController playerController;
+    public GameObject[] lives;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -121,5 +122,31 @@ public class GameManager : MonoBehaviour
     {
         // deactivate coin power-up
         coinPowerup = false;
+    }
+
+    public void UpdateLives(int livesToAdd)
+    {
+        // update the player's lives
+        if(playerController.health <= 3)
+        {
+            playerController.health += livesToAdd;
+        }
+        else if (playerController.health > 3)
+        {
+            playerController.health = 3;
+        }
+
+
+        for (int i = 0; i < lives.Length; i++)
+        {
+            if (i < playerController.health)
+            {
+                lives[i].SetActive(true);
+            }
+            else
+            {
+                lives[i].SetActive(false);
+            }
+        }   
     }
 }

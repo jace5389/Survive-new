@@ -9,6 +9,12 @@ public class SpawnManager : MonoBehaviour
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private float startDelay = 2;
     private float repeatRate = 2;
+    private float CoinStartDelay = 2;
+    private float CoinRepeatRate = 2; 
+    private float LifeStartDelay = 2;
+    private float LifeRepeatRate = 2; 
+    private float PowerupStartDelay = 2;
+    private float PowerupRepeatRate = 2;
     private PlayerController playerControllerscript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
