@@ -16,6 +16,6 @@ public class AutoMove : MonoBehaviour
     {
         // move the object back and forth along the x-axis
         float x = Mathf.PingPong(Time.time * speed, distance * 2) - distance;
-        transform.position = startPos + Vector3.right * x;
+        transform.position = new Vector3(startPos.x + x, startPos.y, startPos.z);
     }
 }

@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI titleScreenText;
     public bool isGameActive;
     public Button restartButton;
     public Button playButton;
     public Button settingsButton;
     public Button backButton;
     public Button exitButton;
+    public Button pauseButton;
     private int score;
     public GameObject titleScreen;
     public GameObject gameOverScreen;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
-        
+
     }
 
     public void RestartGame()
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ExitGame() 
+    public void ExitGame()
     {
         // exit the application
         Debug.Log("Exiting Game...");
@@ -71,21 +71,19 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int difficulty)
     {
-        // start the game with the specified difficulty
-        isGameActive = true;
-        score = 0;
-        UpdateScore(0);
-        titleScreen.gameObject.SetActive(false);
+        // set the difficulty and start the game
         spawnRate /= difficulty;
+        isGameActive = true;
+        titleScreen.gameObject.SetActive(false);
     }
 
     public void PlayGame()
     {
         // load the main game scene
-        SceneManager.LoadScene("MainGame"); 
+        SceneManager.LoadScene("MainGame");
         playButton.gameObject.SetActive(false);
     }
-    
+
 
     public void OpenSettings()
     {
@@ -103,13 +101,20 @@ public class GameManager : MonoBehaviour
         backButton.gameObject.SetActive(true);
     }
 
-    public void ShowTitleScreen()
+    public void TitleScreen()
     {
         // show the title screen
         titleScreen.gameObject.SetActive(true);
         gameOverScreen.gameObject.SetActive(false);
         settingsScreen.gameObject.SetActive(false);
         playButton.gameObject.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        // pause the game
+        isGameActive = false;
+        pauseButton.gameObject.SetActive(false);
     }
 
     public void ActivateCoinPowerup()

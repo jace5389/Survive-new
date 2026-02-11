@@ -11,10 +11,10 @@ public class SpawnManager : MonoBehaviour
     private float repeatRate = 2;
     private float CoinStartDelay = 2;
     private float CoinRepeatRate = 2; 
-    private float LifeStartDelay = 2;
-    private float LifeRepeatRate = 2; 
-    private float PowerupStartDelay = 2;
-    private float PowerupRepeatRate = 2;
+    private float LifeStartDelay = 10;
+    private float LifeRepeatRate = 10; 
+    private float PowerupStartDelay = 7;
+    private float PowerupRepeatRate = 7;
     private PlayerController playerControllerscript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,9 +23,9 @@ public class SpawnManager : MonoBehaviour
         // reference to PlayerController script
         playerControllerscript = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating("SpawnObstacle", repeatRate, startDelay);
-        InvokeRepeating("SpawnCoin", repeatRate, startDelay);
-        InvokeRepeating("SpawnLife", repeatRate, startDelay);
-        InvokeRepeating("SpawnPowerup", repeatRate, startDelay);
+        InvokeRepeating("SpawnCoin", CoinRepeatRate, CoinStartDelay);
+        InvokeRepeating("SpawnLife", LifeRepeatRate, LifeStartDelay);
+        InvokeRepeating("SpawnPowerup", PowerupRepeatRate, PowerupStartDelay);
     }
 
     // Update is called once per frame
