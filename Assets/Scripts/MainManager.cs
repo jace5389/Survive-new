@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
     public GameObject settingsScreen;
     public GameObject titleScreen;
+    public GameObject creditsScreen;
+    public Button creditsButton;
+    public Button backToSettings;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,5 +41,14 @@ public class MainManager : MonoBehaviour
         // show the title screen
         titleScreen.gameObject.SetActive(true);
         settingsScreen.gameObject.SetActive(false);
+    }
+
+    public void OpenCredits()
+    {
+        // open the credits screen
+        creditsScreen.gameObject.SetActive(true);
+        titleScreen.gameObject.SetActive(false);
+        creditsButton.gameObject.SetActive(false);
+        backToSettings.gameObject.SetActive(true);
     }
 }

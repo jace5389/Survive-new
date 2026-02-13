@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.MeshOperations;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,8 +12,17 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
+    public Animator anim;
     public GameManager gameManager;
-    
+    public PlayerState playerState;
+
+    // reference to animator and game manager
+    public void Awake()
+    {
+        anim = GetComponent<Animator>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     void Start()
     {
         // get the rigidbody component
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            SetPlayerState(PlayerState.Jump);
         }
 
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            SetPlayerState(PlayerState.Run);
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -53,9 +59,39 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 gameOver = true;
-                gameManager.GameOver();
+                SetPlayerState(PlayerState.Death);
+                gameManager.Invoke("GameOver",2f);
                 Debug.Log("Game Over!");
             }
+        }
+    }
+
+    // player states
+    public enum PlayerState
+    {
+        Run,
+        Jump,
+        Death,
+    }
+
+
+
+    // set player state and trigger corresponding animation
+    public void SetPlayerState(PlayerState newState)
+    {
+
+        playerState = newState;
+        switch (playerState)
+        {
+            case PlayerState.Run:
+                anim.SetTrigger("Run");
+                break;
+            case PlayerState.Jump:
+                anim.SetTrigger("Jump");
+                break;
+            case PlayerState.Death:
+                anim.SetTrigger("Death");
+                break;
         }
     }
 
@@ -80,4 +116,4 @@ public class PlayerController : MonoBehaviour
     {
         hasJumped = value;
     }
-}    
+}

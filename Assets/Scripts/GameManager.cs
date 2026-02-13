@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         }
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
-
     }
 
     public void RestartGame()
