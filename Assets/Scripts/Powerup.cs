@@ -13,10 +13,12 @@ public class Powerup : MonoBehaviour
     {
 
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            // Activate the coin powerup in the GameManager
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.ActivateCoinPowerup();
             gameManager.Invoke("DeactivateCoinPowerup", 10f);

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Diffculty : MonoBehaviour
 {
     private Button button;
-    private GameManager gameManager;
+    public GameManager gameManager;
     public int difficulty;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +13,6 @@ public class Diffculty : MonoBehaviour
         // get the button component
         button = GetComponent<Button>();
         button.onClick.AddListener(SetDifficulty);
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void SetDifficulty()

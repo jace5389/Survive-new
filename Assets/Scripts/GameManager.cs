@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI newHighScoreText;
+    public TextMeshProUGUI pauseText;
     public bool isGameActive;
     public Button restartButton;
     public Button playButton;
@@ -15,9 +18,13 @@ public class GameManager : MonoBehaviour
     public Button backButton;
     public Button exitButton;
     public Button pauseButton;
+    public Button continueButton;
+    public Button quitButton;
     private int score;
+    public int highScore;
     public GameObject titleScreen;
     public GameObject gameOverScreen;
+    public GameObject pauseScreen;
     public GameObject settingsScreen;
     private float spawnRate = 1.0f;
     public int coinValue;
@@ -25,13 +32,13 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject[] lives;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // initialize game state
         score = 0;
         isGameActive = true;
         UpdateScore(0);
+        LoadPlayer();
     }
 
     public void GameOver()
@@ -41,6 +48,14 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
+        highScoreText.text = "Final Score: " + score;
+        if (score > highScore)
+        {
+           highScore = score;
+           newHighScoreText.gameObject.SetActive(true);
+           SavePlayer();
+        }
+        newHighScoreText.text = "New High Score: " + highScore;
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -65,7 +80,6 @@ public class GameManager : MonoBehaviour
         // exit the application
         Debug.Log("Exiting Game...");
         Application.Quit();
-        exitButton.gameObject.SetActive(true);
     }
 
     public void StartGame(int difficulty)
@@ -112,9 +126,33 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         // pause the game
+        pauseScreen.gameObject.SetActive(true);
         isGameActive = false;
-        pauseButton.gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
+
+    public void PauseScreen()
+    {
+        // show the pause screen
+        pauseScreen.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+    }
+
+    public void ContinueGame()
+    {
+        // continue the game
+        isGameActive = true;
+        Time.timeScale = 1f;
+    }
+
+    public void QuitToMain()
+    {
+        // quit to the main title screen
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("TitleScreen");
+    }
+
 
     public void ActivateCoinPowerup()
     {
@@ -128,10 +166,27 @@ public class GameManager : MonoBehaviour
         coinPowerup = false;
     }
 
+    public void SavePlayer ()
+    {
+        // save the player's data
+        PlayerData playerData = new PlayerData(highScore);
+        SaveSystem.SavePlayer(playerData);
+    }   
+
+    public void LoadPlayer ()
+    {
+        // load the player's data
+        PlayerData playerData = SaveSystem.LoadPlayer();
+        if (playerData != null)
+        {
+           highScore = playerData.score;
+        }
+    }
+
     public void UpdateLives(int livesToAdd)
     {
         // update the player's lives
-        if(playerController.health <= 3)
+        if (playerController.health <= 3)
         {
             playerController.health += livesToAdd;
         }
@@ -140,7 +195,7 @@ public class GameManager : MonoBehaviour
             playerController.health = 3;
         }
 
-
+        // update the UI to reflect the current number of lives
         for (int i = 0; i < lives.Length; i++)
         {
             if (i < playerController.health)

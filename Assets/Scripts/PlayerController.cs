@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public GameManager gameManager;
     public PlayerState playerState;
-
+    internal static object instance;
+    
     // reference to animator and game manager
     public void Awake()
     {
@@ -31,12 +32,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
+
         // jump mechanic
-        if (hasJumped && isOnGround && !gameOver)
+        if ( hasJumped && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            hasJumped = false;
             SetPlayerState(PlayerState.Jump);
         }
 
@@ -54,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            health--;
             gameManager.UpdateLives(-1);
             if (health <= 0)
             {
@@ -73,8 +75,6 @@ public class PlayerController : MonoBehaviour
         Jump,
         Death,
     }
-
-
 
     // set player state and trigger corresponding animation
     public void SetPlayerState(PlayerState newState)
@@ -101,9 +101,9 @@ public class PlayerController : MonoBehaviour
         horizontalInput = inputValue.Get<Vector2>().x;
     }
 
-    public void MoveInput(Vector2 vaule)
+    public void MoveInput(Vector2 value)
     {
-        horizontalInput = vaule.x;
+        horizontalInput = value.x;
     }
 
     // jump input action

@@ -46,6 +46,7 @@ public class MainManager : MonoBehaviour
     public void OpenCredits()
     {
         // open the credits screen
+        settingsScreen.gameObject.SetActive(false);
         creditsScreen.gameObject.SetActive(true);
         titleScreen.gameObject.SetActive(false);
         creditsButton.gameObject.SetActive(false);

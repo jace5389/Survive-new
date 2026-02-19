@@ -18,6 +18,7 @@ public class Life : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Access the GameManager and update the player's lives
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.UpdateLives(1);
             Destroy(gameObject);
