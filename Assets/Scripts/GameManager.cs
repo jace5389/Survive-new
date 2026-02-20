@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
+
         highScoreText.text = "Final Score: " + score;
         if (score > highScore)
         {
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
         // exit the application
         Debug.Log("Exiting Game...");
         Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void StartGame(int difficulty)
@@ -144,13 +146,15 @@ public class GameManager : MonoBehaviour
         // continue the game
         isGameActive = true;
         Time.timeScale = 1f;
+        pauseScreen.gameObject.SetActive(false);
     }
 
     public void QuitToMain()
     {
         // quit to the main title screen
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreen");
+        isGameActive = false;
+        SceneManager.LoadScene("MainMenu");
     }
 
 

@@ -47188,7 +47188,7 @@ RectTransform:
   m_GameObject: {fileID: 532484640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0307, y: 2.016703, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1970390624}
@@ -47198,7 +47198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 430.99988, y: -266}
+  m_AnchoredPosition: {x: -14, y: 7}
   m_SizeDelta: {x: -961, y: -541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &532484642
@@ -68409,7 +68409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: Score =
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -163684,7 +163684,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -179295,7 +179295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 98347274782919441, guid: 4cbbaf0b0f49db74494effda87cd2fe0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0080873
+      value: -0.014
       objectReference: {fileID: 0}
     - target: {fileID: 98347274782919441, guid: 4cbbaf0b0f49db74494effda87cd2fe0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -179349,6 +179349,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 501249166}
+    - target: {fileID: 1140400261249175848, guid: 4cbbaf0b0f49db74494effda87cd2fe0, type: 3}
+      propertyPath: dirtParticle
+      value: 
+      objectReference: {fileID: 19801442, guid: 834c99069a124aa439d5795c3579843b, type: 3}
     - target: {fileID: 1271649593559981112, guid: 4cbbaf0b0f49db74494effda87cd2fe0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.77136374
