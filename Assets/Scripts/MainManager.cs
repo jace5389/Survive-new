@@ -64,8 +64,20 @@ public class MainManager : MonoBehaviour
         backToSettings.gameObject.SetActive(true);
     }
 
+    public void BackToSettings()
+    {
+        // go back to the settings screen
+        settingsScreen.gameObject.SetActive(true);
+        creditsScreen.gameObject.SetActive(false);
+        titleScreen.gameObject.SetActive(false);
+        creditsButton.gameObject.SetActive(true);
+        backToSettings.gameObject.SetActive(false);
+    }
+
+
     public void ChangeMusicVolume(float soundLevel)
     {
+        // change the music volume
         AudioManager.instance.ChangeMusicVolume(soundLevel);
         PreferencesManager.SetMusicVolume(soundLevel);
     }
@@ -73,6 +85,7 @@ public class MainManager : MonoBehaviour
 
     public void ChangeSoundVolume(float soundLevel)
     {
+        // change the sound volume
         AudioManager.instance.ChangeSoundVolume(soundLevel);
         PreferencesManager.SetSoundVolume(soundLevel);
     }
