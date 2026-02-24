@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,10 +10,20 @@ public class MainManager : MonoBehaviour
     public GameObject creditsScreen;
     public Button creditsButton;
     public Button backToSettings;
+    public Slider musicSlider;
+    public Slider masterSlider; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (masterSlider != null)
+        {
+            masterSlider.value = PreferencesManager.GetMasterVolume();
+        }
+
+        if (musicSlider != null)
+        {
+            musicSlider.value = PreferencesManager.GetMusicVolume();
+        }
     }
 
     // Update is called once per frame
@@ -51,5 +62,18 @@ public class MainManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
         creditsButton.gameObject.SetActive(false);
         backToSettings.gameObject.SetActive(true);
+    }
+
+    public void ChangeMusicVolume(float soundLevel)
+    {
+        AudioManager.instance.ChangeMusicVolume(soundLevel);
+        PreferencesManager.SetMusicVolume(soundLevel);
+    }
+
+
+    public void ChangeSoundVolume(float soundLevel)
+    {
+        AudioManager.instance.ChangeSoundVolume(soundLevel);
+        PreferencesManager.SetSoundVolume(soundLevel);
     }
 }
