@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,10 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     private float speed = 10.0f;
     private Rigidbody playerRb;
+    private Coroutine shieldCoroutine;
     public float jumpForce;
     public float gravityModifier;
+    public float shieldDuration = 5f;
+    public GameObject shieldVisual;
     public bool isOnGround = true;
     public bool gameOver = false;
+    public bool hasShield = false;
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
@@ -16,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
     public PlayerState playerState;
     internal static object instance;
-    
+
     // reference to animator and game manager
     public void Awake()
     {
@@ -32,10 +37,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
 
         // jump mechanic
-        if ( hasJumped && isOnGround && !gameOver)
+        if (hasJumped && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
@@ -57,15 +62,44 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            gameManager.UpdateLives(-1);
-            if (health <= 0)
+            if (hasShield)
             {
-                gameOver = true;
-                SetPlayerState(PlayerState.Death);
-                gameManager.Invoke("GameOver",2f);
-                Debug.Log("Game Over!");
+
+                return;
+            }
+            else
+            {
+                gameManager.UpdateLives(-1);
+                if (health <= 0)
+                {
+                    gameOver = true;
+                    SetPlayerState(PlayerState.Death);
+                    gameManager.Invoke("GameOver", 2f);
+                    Debug.Log("Game Over!");
+                }
+
             }
         }
+    }
+
+    // method to activate shield powerup
+    public void ActivateShield()
+    {
+        if (shieldCoroutine != null)
+        {
+            StopCoroutine(shieldCoroutine);
+        }
+        shieldCoroutine = StartCoroutine(ShieldPowerUp());
+    }
+
+    // coroutine to handle shield powerup duration and visual effects
+    IEnumerator ShieldPowerUp()
+    {
+        hasShield = true;
+        shieldVisual.SetActive(true);
+        yield return new WaitForSeconds(shieldDuration);
+        hasShield = false;
+        shieldVisual.SetActive(false);
     }
 
     // player states

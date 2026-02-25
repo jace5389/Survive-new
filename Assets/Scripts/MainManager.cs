@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
+    public TextMeshProUGUI musicVolumeText;
+    public TextMeshProUGUI masterVolumeText;  
     public GameObject settingsScreen;
     public GameObject titleScreen;
     public GameObject creditsScreen;

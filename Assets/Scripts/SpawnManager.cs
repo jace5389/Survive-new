@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] coinPrefab;
     public GameObject[] lifePrefab;
     public GameObject[] powerupPrefab;
+    public GameObject[] shieldPrefab;
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private float startDelay = 2;
     private float repeatRate = 2;
@@ -15,6 +16,8 @@ public class SpawnManager : MonoBehaviour
     private float LifeRepeatRate = 10.1f; 
     private float PowerupStartDelay = 7.5f;
     private float PowerupRepeatRate = 7.45f;
+    private float ShieldStartDelay = 10.5f;
+    private float ShieldRepeatRate = 10.4f;
     private PlayerController playerControllerscript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +29,7 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnCoin", CoinStartDelay, CoinRepeatRate);
         InvokeRepeating("SpawnLife", LifeStartDelay, LifeRepeatRate);
         InvokeRepeating("SpawnPowerup", PowerupStartDelay, PowerupRepeatRate);
+        InvokeRepeating("SpawnShield", ShieldStartDelay, ShieldRepeatRate);
     }
 
     // Update is called once per frame
@@ -73,6 +77,18 @@ public class SpawnManager : MonoBehaviour
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
             int powerupIndex = Random.Range(0, powerupPrefab.Length);
             Instantiate(powerupPrefab[powerupIndex], spawnPos, powerupPrefab[powerupIndex].transform.rotation);
+        }
+    }
+
+    void SpawnShield()
+    {
+        // spawn shield at random x positions
+        if (playerControllerscript.gameOver == false)
+        {
+            
+            spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
+            int shieldIndex = Random.Range(0, shieldPrefab.Length);
+            Instantiate(shieldPrefab[shieldIndex], spawnPos, shieldPrefab[shieldIndex].transform.rotation);
         }
     }
 }
