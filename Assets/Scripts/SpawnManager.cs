@@ -14,13 +14,12 @@ public class SpawnManager : MonoBehaviour
     private float CoinRepeatRate = 2.3f; 
     private float LifeStartDelay = 10.9f;
     private float LifeRepeatRate = 10.1f; 
-    private float PowerupStartDelay = 7.5f;
-    private float PowerupRepeatRate = 7.45f;
-    private float ShieldStartDelay = 10.5f;
-    private float ShieldRepeatRate = 10.4f;
+    private float PowerupStartDelay = 11.5f;
+    private float PowerupRepeatRate = 11.45f;
+    private float ShieldStartDelay = 12.5f;
+    private float ShieldRepeatRate = 12.4f;
     private PlayerController playerControllerscript;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // find the PlayerController script to check for game over state
@@ -32,7 +31,6 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnShield", ShieldStartDelay, ShieldRepeatRate);
     }
 
-    // Update is called once per frame
     void SpawnObstacle()
     {
         // spawn obstacles at random x positions
@@ -86,7 +84,7 @@ public class SpawnManager : MonoBehaviour
         if (playerControllerscript.gameOver == false)
         {
             
-            spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
+            spawnPos = new Vector3(Random.Range(16.66f, 17.66f),.1f, 0);
             int shieldIndex = Random.Range(0, shieldPrefab.Length);
             Instantiate(shieldPrefab[shieldIndex], spawnPos, shieldPrefab[shieldIndex].transform.rotation);
         }

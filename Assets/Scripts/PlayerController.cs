@@ -64,8 +64,9 @@ public class PlayerController : MonoBehaviour
         {
             if (hasShield)
             {
-
+                Destroy(collision.gameObject);
                 return;
+                
             }
             else
             {
@@ -89,17 +90,22 @@ public class PlayerController : MonoBehaviour
         {
             StopCoroutine(shieldCoroutine);
         }
-        shieldCoroutine = StartCoroutine(ShieldPowerUp());
+        shieldCoroutine = StartCoroutine(ShieldTimer());
     }
 
     // coroutine to handle shield powerup duration and visual effects
-    IEnumerator ShieldPowerUp()
+    IEnumerator ShieldTimer()
     {
         hasShield = true;
-        shieldVisual.SetActive(true);
+
+        if (shieldVisual != null)
+            shieldVisual.SetActive(true);
+
         yield return new WaitForSeconds(shieldDuration);
         hasShield = false;
-        shieldVisual.SetActive(false);
+
+        if (shieldVisual != null)
+            shieldVisual.SetActive(false);
     }
 
     // player states

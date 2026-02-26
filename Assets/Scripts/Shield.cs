@@ -18,6 +18,7 @@ public class Shield : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Access the PlayerController and activate the shield
             other.GetComponent<PlayerController>().ActivateShield();
             Destroy(gameObject);
         }
