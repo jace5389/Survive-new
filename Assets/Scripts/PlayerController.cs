@@ -1,27 +1,33 @@
 using System.Collections;
+using TMPro;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     private float speed = 10.0f;
     private Rigidbody playerRb;
     private Coroutine shieldCoroutine;
+    public bool shieldActive = false;
     public float jumpForce;
     public float gravityModifier;
     public float shieldDuration = 5f;
-    public GameObject shieldVisual;
+    public float shieldTimer;
     public bool isOnGround = true;
     public bool gameOver = false;
     public bool hasShield = false;
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
+    public TextMeshProUGUI timerText;
+    public GameObject shieldVisual;
     public Animator anim;
     public GameManager gameManager;
     public PlayerState playerState;
     internal static object instance;
-
+   
     // reference to animator and game manager
     public void Awake()
     {
@@ -101,8 +107,21 @@ public class PlayerController : MonoBehaviour
         if (shieldVisual != null)
             shieldVisual.SetActive(true);
 
+        shieldActive = true;
+        shieldTimer = shieldDuration;
+        Debug.Log("Shield ON");
+
+        while (shieldTimer > 0)
+        {
+            shieldTimer -= Time.deltaTime;
+            yield return null;
+        }
+
         yield return new WaitForSeconds(shieldDuration);
         hasShield = false;
+
+        shieldActive = false;
+        Debug.Log("Shield OFF");
 
         if (shieldVisual != null)
             shieldVisual.SetActive(false);
