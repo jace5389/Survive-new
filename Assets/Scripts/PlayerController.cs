@@ -10,17 +10,21 @@ public class PlayerController : MonoBehaviour
     private float speed = 10.0f;
     private Rigidbody playerRb;
     private Coroutine shieldCoroutine;
-    public bool shieldActive = false;
+    private Coroutine powerupCoroutine;
     public float jumpForce;
     public float gravityModifier;
-    public float shieldDuration = 5f;
+    public float shieldDuration = 10f;
+    public float powerupDuration = 10f;
     public float shieldTimer;
+    public float powerupTimer;
     public bool isOnGround = true;
     public bool gameOver = false;
+    public bool hasPowerup = false;
     public bool hasShield = false;
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
+    public TextMeshProUGUI powerupText;
     public TextMeshProUGUI timerText;
     public GameObject shieldVisual;
     public Animator anim;
@@ -107,24 +111,54 @@ public class PlayerController : MonoBehaviour
         if (shieldVisual != null)
             shieldVisual.SetActive(true);
 
-        shieldActive = true;
         shieldTimer = shieldDuration;
+
         Debug.Log("Shield ON");
 
         while (shieldTimer > 0)
         {
             shieldTimer -= Time.deltaTime;
+
+            if (timerText != null)
+                timerText.text = "Shield: " + Mathf.CeilToInt(shieldTimer) + "s";
+
             yield return null;
         }
 
-        yield return new WaitForSeconds(shieldDuration);
+        // Turn shield off
         hasShield = false;
-
-        shieldActive = false;
-        Debug.Log("Shield OFF");
 
         if (shieldVisual != null)
             shieldVisual.SetActive(false);
+
+        if (timerText != null)
+            timerText.text = "";
+
+        Debug.Log("Shield OFF");
+    }
+
+    public void ActivatePowerup()
+    {
+        if (powerupCoroutine != null)
+        {
+            StopCoroutine(powerupCoroutine);
+        }
+        powerupCoroutine = StartCoroutine(PowerupTimer());
+    }
+
+    IEnumerator PowerupTimer()
+    {
+        float powerupTimer = powerupDuration;
+        Debug.Log("Powerup ON");
+        while (powerupTimer > 0)
+        {
+            powerupTimer -= Time.deltaTime;
+            powerupText.text = "Powerup: " + Mathf.CeilToInt(powerupTimer) + "s";
+            yield return null;
+        }
+        hasPowerup = false;
+        powerupText.text = "";
+        Debug.Log("Powerup OFF");
     }
 
     // player states

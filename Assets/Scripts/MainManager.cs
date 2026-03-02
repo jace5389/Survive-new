@@ -15,9 +15,10 @@ public class MainManager : MonoBehaviour
     public Button backToSettings;
     public Slider musicSlider;
     public Slider masterSlider; 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        // initialize the volume sliders with the saved preferences
         if (masterSlider != null)
         {
             masterSlider.value = PreferencesManager.GetMasterVolume();
