@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
     {
         // spawn obstacles at random x positions
         if (playerControllerscript.gameOver == false)
-        {
+        { 
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
             int obstacleIndex = Random.Range(0, obstaclePrefabs.Length);
             Instantiate(obstaclePrefabs[obstacleIndex], spawnPos, obstaclePrefabs[obstacleIndex].transform.rotation);
@@ -47,7 +47,6 @@ public class SpawnManager : MonoBehaviour
         // spawn coins at random x positions
         if (playerControllerscript.gameOver == false)
         {
-            
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);   
             int coinIndex = Random.Range(0, coinPrefab.Length);
             Instantiate(coinPrefab[coinIndex], spawnPos, coinPrefab[coinIndex].transform.rotation);
@@ -59,7 +58,6 @@ public class SpawnManager : MonoBehaviour
         // spawn life at random x positions
         if (playerControllerscript.gameOver == false)
         {
-            
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
             int lifeIndex = Random.Range(0, lifePrefab.Length);
             Instantiate(lifePrefab[lifeIndex], spawnPos, lifePrefab[lifeIndex].transform.rotation);
@@ -71,7 +69,6 @@ public class SpawnManager : MonoBehaviour
         // spawn powerup at random x positions
         if (playerControllerscript.gameOver == false)
         {
-            
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
             int powerupIndex = Random.Range(0, powerupPrefab.Length);
             Instantiate(powerupPrefab[powerupIndex], spawnPos, powerupPrefab[powerupIndex].transform.rotation);
@@ -83,7 +80,6 @@ public class SpawnManager : MonoBehaviour
         // spawn shield at random x positions
         if (playerControllerscript.gameOver == false)
         {
-            
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),.1f, 0);
             int shieldIndex = Random.Range(0, shieldPrefab.Length);
             Instantiate(shieldPrefab[shieldIndex], spawnPos, shieldPrefab[shieldIndex].transform.rotation);

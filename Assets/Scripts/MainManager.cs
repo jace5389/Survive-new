@@ -40,7 +40,6 @@ public class MainManager : MonoBehaviour
     {
         // load the main game scene
         SceneManager.LoadScene("GameScene");
-        
     }
 
 

@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
-    public TextMeshProUGUI powerupText;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI powerupText;
     public GameObject shieldVisual;
     public Animator anim;
     public GameManager gameManager;
@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
                     gameManager.Invoke("GameOver", 2f);
                     Debug.Log("Game Over!");
                 }
-
             }
         }
     }
@@ -107,36 +106,28 @@ public class PlayerController : MonoBehaviour
     IEnumerator ShieldTimer()
     {
         hasShield = true;
-
         if (shieldVisual != null)
             shieldVisual.SetActive(true);
 
         shieldTimer = shieldDuration;
-
         Debug.Log("Shield ON");
-
         while (shieldTimer > 0)
         {
             shieldTimer -= Time.deltaTime;
-
             if (timerText != null)
                 timerText.text = "Shield: " + Mathf.CeilToInt(shieldTimer) + "s";
-
             yield return null;
         }
-
-        // Turn shield off
         hasShield = false;
-
         if (shieldVisual != null)
             shieldVisual.SetActive(false);
 
         if (timerText != null)
             timerText.text = "";
-
         Debug.Log("Shield OFF");
     }
 
+    // method to activate coin powerup
     public void ActivatePowerup()
     {
         if (powerupCoroutine != null)
@@ -146,18 +137,22 @@ public class PlayerController : MonoBehaviour
         powerupCoroutine = StartCoroutine(PowerupTimer());
     }
 
+    // coroutine to handle coin powerup duration and UI updates
     IEnumerator PowerupTimer()
     {
-        float powerupTimer = powerupDuration;
+        hasPowerup = true;
+        powerupTimer = powerupDuration;
         Debug.Log("Powerup ON");
         while (powerupTimer > 0)
         {
             powerupTimer -= Time.deltaTime;
-            powerupText.text = "Powerup: " + Mathf.CeilToInt(powerupTimer) + "s";
+            if (powerupText != null)
+                powerupText.text = "Powerup: " + Mathf.CeilToInt(powerupTimer) + "s";
             yield return null;
         }
         hasPowerup = false;
-        powerupText.text = "";
+        if (powerupText != null)
+            powerupText.text = "";
         Debug.Log("Powerup OFF");
     }
 
