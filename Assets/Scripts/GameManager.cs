@@ -52,13 +52,13 @@ public class GameManager : MonoBehaviour
         highScoreText.text = "Final Score: " + score;
         if (score > highScore)
         {
-           highScore = score;
-           newHighScoreText.gameObject.SetActive(true);
-           SavePlayer();
+          highScore = score;
+          newHighScoreText.gameObject.SetActive(true);
+          SavePlayer();
         }
         newHighScoreText.text = "New High Score: " + highScore;
     }
-
+    
     public void UpdateScore(int scoreToAdd)
     {
         // update the player's score

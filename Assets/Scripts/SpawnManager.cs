@@ -16,8 +16,8 @@ public class SpawnManager : MonoBehaviour
     private float LifeRepeatRate = 10.1f; 
     private float PowerupStartDelay = 11.5f;
     private float PowerupRepeatRate = 11.45f;
-    private float ShieldStartDelay = 15.45f;
-    private float ShieldRepeatRate = 15.5f;
+    private float ShieldStartDelay = 15.5f;
+    private float ShieldRepeatRate = 15.54f;
     private PlayerController playerControllerscript;
 
     void Start()

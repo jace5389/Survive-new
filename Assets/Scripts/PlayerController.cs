@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
             hasJumped = false;
             SetPlayerState(PlayerState.Jump);
         }
-
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
     }
 
@@ -76,7 +75,6 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 return;
-                
             }
             else
             {
@@ -167,7 +165,6 @@ public class PlayerController : MonoBehaviour
     // set player state and trigger corresponding animation
     public void SetPlayerState(PlayerState newState)
     {
-
         playerState = newState;
         switch (playerState)
         {
