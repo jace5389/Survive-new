@@ -13,6 +13,7 @@ public static class SaveSystem {
         formatter.Serialize(stream, playerData);
         stream.Close();
     }
+
     public static PlayerData LoadPlayer()
     {
         // Check if the save file exists before trying to load it

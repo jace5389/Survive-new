@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         // jump mechanic
         if (hasJumped && isOnGround && !gameOver)
         {

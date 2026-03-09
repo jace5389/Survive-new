@@ -77,14 +77,12 @@ public class MainManager : MonoBehaviour
         backToSettings.gameObject.SetActive(false);
     }
 
-
     public void ChangeMusicVolume(float soundLevel)
     {
         // change the music volume
         AudioManager.instance.ChangeMusicVolume(soundLevel);
         PreferencesManager.SetMusicVolume(soundLevel);
     }
-
 
     public void ChangeSoundVolume(float soundLevel)
     {
