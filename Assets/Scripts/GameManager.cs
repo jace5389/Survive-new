@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         // exit the application
-        Debug.Log("Exiting Game...");
+        Debug.Log("Exiting Game");
         Application.Quit();
         SceneManager.LoadScene("MainMenu");
     }

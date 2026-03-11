@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
     }
 
-    // collision for ground and obstacles
+    // detect collision with ground to reset jump and update player state
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -67,12 +67,17 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             SetPlayerState(PlayerState.Run);
         }
+    }
 
-        if (collision.gameObject.CompareTag("Obstacle"))
+    // detect collision with obstacles to handle health, shield, and game over logic
+    private void OnTriggerEnter(Collider other)
+    { 
+        if (other.CompareTag("Obstacle"))
         {
+            playerRb.linearVelocity = new Vector3(0, playerRb.linearVelocity.y, 0);
             if (hasShield)
             {
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 return;
             }
             else
@@ -104,8 +109,10 @@ public class PlayerController : MonoBehaviour
     {
         hasShield = true;
         if (shieldVisual != null)
+        {
             shieldVisual.SetActive(true);
-
+        }
+        
         shieldTimer = shieldDuration;
         Debug.Log("Shield ON");
         while (shieldTimer > 0)

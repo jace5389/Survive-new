@@ -5,9 +5,11 @@ namespace StarterAssets
     public class UICanvasControllerInput : MonoBehaviour
     {
 
+        // This script is meant to be used with the UICanvasController prefab
         [Header("Output")]
         public PlayerController starterAssetsInputs;
 
+        // Move is usually a Vector2 representing the direction and magnitude of movement input
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
             starterAssetsInputs.MoveInput(virtualMoveDirection.normalized);
