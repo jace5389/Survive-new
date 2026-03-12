@@ -14,11 +14,11 @@ public class Life : MonoBehaviour
         
     }
 
+    // When the player collides with the life object, increase the player's lives by 1 and destroy the life object
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Access the GameManager and update the player's lives
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.UpdateLives(1);
             Destroy(gameObject);

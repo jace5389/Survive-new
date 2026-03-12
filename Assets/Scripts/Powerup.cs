@@ -14,13 +14,14 @@ public class Powerup : MonoBehaviour
 
     }
 
+    // When the player collides with the powerup, activate the coin powerup effect and destroy the powerup object, then deactivate the coin powerup effect after 10 seconds
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Activate the coin powerup in the GameManager
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.ActivateCoinPowerup();
+            other.GetComponent<PlayerController>().ActivatePowerup();
             gameManager.Invoke("DeactivateCoinPowerup", 10f);
             Destroy(gameObject);
         }

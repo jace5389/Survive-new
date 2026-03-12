@@ -14,11 +14,11 @@ public class Shield : MonoBehaviour
         
     }
 
+    // When the player collides with the shield object, activate the shield effect and destroy the shield object
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            // Access the PlayerController and activate the shield
+        { 
             other.GetComponent<PlayerController>().ActivateShield();
             Destroy(gameObject);
         }

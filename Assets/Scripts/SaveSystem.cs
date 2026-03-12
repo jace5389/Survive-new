@@ -2,11 +2,11 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SaveSystem { 
+public static class SaveSystem {
 
+    // Save the player's data to a file using binary serialization
     public static void SavePlayer(PlayerData playerData)
     {
-        // Create a BinaryFormatter to serialize the player data
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -14,9 +14,9 @@ public static class SaveSystem {
         stream.Close();
     }
 
+    // Load the player's data from a file using binary deserialization
     public static PlayerData LoadPlayer()
     {
-        // Check if the save file exists before trying to load it
         string path = Application.persistentDataPath + "/player.save";
         if (File.Exists(path))
         {

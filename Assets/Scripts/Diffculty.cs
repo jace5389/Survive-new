@@ -7,17 +7,16 @@ public class Diffculty : MonoBehaviour
     public GameManager gameManager;
     public int difficulty;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // get the button component
     void Start()
     {
-        // get the button component
         button = GetComponent<Button>();
         button.onClick.AddListener(SetDifficulty);
     }
 
+    // set the difficulty and start the game when the button is clicked
     void SetDifficulty()
     {
-        // set the difficulty and start the game
         Debug.Log(gameObject.name + "was clicked");
         gameManager.StartGame(difficulty);
     }

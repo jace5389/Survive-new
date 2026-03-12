@@ -15,12 +15,11 @@ public class Coin : MonoBehaviour
 
     }
 
-    
+    // When the player collides with the coin object, update the score and destroy the coin object
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            // Access the GameManager and update the score
+        { 
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.UpdateScore(value);
             Destroy(gameObject);

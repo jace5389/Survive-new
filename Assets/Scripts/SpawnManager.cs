@@ -20,9 +20,9 @@ public class SpawnManager : MonoBehaviour
     private float ShieldRepeatRate = 15.54f;
     private PlayerController playerControllerscript;
 
+    // find the PlayerController script to check for game over state
     void Start()
     {
-        // find the PlayerController script to check for game over state
         playerControllerscript = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
         InvokeRepeating("SpawnCoin", CoinStartDelay, CoinRepeatRate);
@@ -31,9 +31,9 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnShield", ShieldStartDelay, ShieldRepeatRate);
     }
 
+    // spawn obstacles at random x positions
     void SpawnObstacle()
     {
-        // spawn obstacles at random x positions
         if (playerControllerscript.gameOver == false)
         { 
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
@@ -42,9 +42,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // spawn coins at random x positions
     void SpawnCoin()
     {
-        // spawn coins at random x positions
         if (playerControllerscript.gameOver == false)
         {
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);   
@@ -53,9 +53,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // spawn life at random x positions
     void SpawnLife()
     {
-        // spawn life at random x positions
         if (playerControllerscript.gameOver == false)
         {
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
@@ -64,9 +64,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // spawn powerup at random x positions
     void SpawnPowerup()
     {
-        // spawn powerup at random x positions
         if (playerControllerscript.gameOver == false)
         {
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),1.0f, 0);
@@ -75,9 +75,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // spawn shield at random x positions
     void SpawnShield()
     {
-        // spawn shield at random x positions
         if (playerControllerscript.gameOver == false)
         {
             spawnPos = new Vector3(Random.Range(16.66f, 17.66f),.1f, 0);

@@ -14,11 +14,11 @@ public class MainManager : MonoBehaviour
     public Button creditsButton;
     public Button backToSettings;
     public Slider musicSlider;
-    public Slider masterSlider; 
+    public Slider masterSlider;
 
+    // Start is called before the first frame update
     void Start()
     {
-        // initialize the volume sliders with the saved preferences
         if (masterSlider != null)
         {
             masterSlider.value = PreferencesManager.GetMasterVolume();
@@ -36,30 +36,29 @@ public class MainManager : MonoBehaviour
         
     }
 
+    // Load the game scene when the player clicks the play button
     public void PlayGame()
     {
-        // load the main game scene
         SceneManager.LoadScene("GameScene");
     }
 
-
+    // Quit the application when the player clicks the quit button
     public void OpenSettings()
     {
-        // open the settings screen
         settingsScreen.gameObject.SetActive(true);
         titleScreen.gameObject.SetActive(false);
     }
 
+    // Go back to the title screen when the player clicks the back button
     public void TitleScreen()
     {
-        // show the title screen
         titleScreen.gameObject.SetActive(true);
         settingsScreen.gameObject.SetActive(false);
     }
 
+    // Open the credits screen when the player clicks the credits button
     public void OpenCredits()
     {
-        // open the credits screen
         settingsScreen.gameObject.SetActive(false);
         creditsScreen.gameObject.SetActive(true);
         titleScreen.gameObject.SetActive(false);
@@ -67,9 +66,9 @@ public class MainManager : MonoBehaviour
         backToSettings.gameObject.SetActive(true);
     }
 
+    // Go back to the settings screen when the player clicks the back button on the credits screen
     public void BackToSettings()
     {
-        // go back to the settings screen
         settingsScreen.gameObject.SetActive(true);
         creditsScreen.gameObject.SetActive(false);
         titleScreen.gameObject.SetActive(false);
@@ -77,16 +76,16 @@ public class MainManager : MonoBehaviour
         backToSettings.gameObject.SetActive(false);
     }
 
+    // Change the master volume when the player adjusts the master volume slider
     public void ChangeMusicVolume(float soundLevel)
     {
-        // change the music volume
         AudioManager.instance.ChangeMusicVolume(soundLevel);
         PreferencesManager.SetMusicVolume(soundLevel);
     }
 
+    // Change the sound volume when the player adjusts the sound volume slider
     public void ChangeSoundVolume(float soundLevel)
     {
-        // change the sound volume
         AudioManager.instance.ChangeSoundVolume(soundLevel);
         PreferencesManager.SetSoundVolume(soundLevel);
     }

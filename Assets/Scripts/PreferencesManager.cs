@@ -2,28 +2,27 @@ using UnityEngine;
 
 public static class PreferencesManager 
 {
+    // return the music volume, or 1f if it hasn't been set
     public static float GetMusicVolume() 
     {
-        // return the music volume, or 1f if it hasn't been set
         return PlayerPrefs.GetFloat("MusicVolume", 1f);
     }
 
+    // return the master volume, or 1f if it hasn't been set
     public static float GetMasterVolume() 
     {
-        // return the master volume, or 1f if it hasn't been set
         return PlayerPrefs.GetFloat("MasterVolume", 1f); 
     }
 
+    // set the music volume
     public static void SetMusicVolume(float soundLevel)
     {
-        // set the music volume
         PlayerPrefs.SetFloat("MusicVolume", soundLevel);
     }
 
-   public static void SetSoundVolume(float soundLevel)
-   {
-        // set the master volume
+    // set the master volume
+    public static void SetSoundVolume(float soundLevel)
+    {
         PlayerPrefs.SetFloat("MasterVolume", soundLevel);
-   }
-
+    }
 }

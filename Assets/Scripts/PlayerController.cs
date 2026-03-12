@@ -39,16 +39,16 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+    // initialize player rigidbody and modify gravity
     void Start()
     {
-        // get the rigidbody component
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
     }
 
+    // handle player movement and jumping based on input and update player state
     void Update()
     {
-        // jump mechanic
         if (hasJumped && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -119,15 +119,22 @@ public class PlayerController : MonoBehaviour
         {
             shieldTimer -= Time.deltaTime;
             if (timerText != null)
+            {
                 timerText.text = "Shield: " + Mathf.CeilToInt(shieldTimer) + "s";
+            }
             yield return null;
         }
+
         hasShield = false;
         if (shieldVisual != null)
-            shieldVisual.SetActive(false);
+        { 
+            shieldVisual.SetActive(false); 
+        }
 
         if (timerText != null)
+        {
             timerText.text = "";
+        }
         Debug.Log("Shield OFF");
     }
 
@@ -151,12 +158,17 @@ public class PlayerController : MonoBehaviour
         {
             powerupTimer -= Time.deltaTime;
             if (powerupText != null)
+            {
                 powerupText.text = "Powerup: " + Mathf.CeilToInt(powerupTimer) + "s";
+            }
             yield return null;
         }
+
         hasPowerup = false;
         if (powerupText != null)
+        {
             powerupText.text = "";
+        }
         Debug.Log("Powerup OFF");
     }
 
@@ -192,6 +204,7 @@ public class PlayerController : MonoBehaviour
         horizontalInput = inputValue.Get<Vector2>().x;
     }
 
+    // alternative method for move input action to allow for different input types
     public void MoveInput(Vector2 value)
     {
         horizontalInput = value.x;
@@ -203,6 +216,7 @@ public class PlayerController : MonoBehaviour
         hasJumped = inputValue.isPressed;
     }
 
+    // alternative method for jump input action to allow for different input types
     public void JumpInput(bool value)
     {
         hasJumped = value;

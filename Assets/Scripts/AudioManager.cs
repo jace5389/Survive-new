@@ -7,29 +7,29 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioMixer masterMixer;
-   
+
+    // change the master volume
     public void ChangeSoundVolume(float soundLevel)
     {
-        // change the master volume
         masterMixer.SetFloat("Master Volume", soundLevel);
     }
 
+    // change the music volume
     public void ChangeMusicVolume(float soundLevel)
     {
-        // change the music volume
         masterMixer.SetFloat("Music Volume", soundLevel);
     }
 
+    // initialize the audio manager with the saved preferences
     public void Start()
     {
-        // set the master and music volume to the saved preferences
         masterMixer.SetFloat("Master Volume", PreferencesManager.GetMasterVolume());
         masterMixer.SetFloat("Music Volume", PreferencesManager.GetMusicVolume());
     }
 
+    // ensure that there is only one instance of the audio manager
     private void Awake()
     {
-        // ensure that there is only one instance of the AudioManager and that it persists across scenes
         if (instance == null)
         {
             instance = this;

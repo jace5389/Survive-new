@@ -13,37 +13,33 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pauseText;
     public bool isGameActive;
     public Button restartButton;
-    public Button playButton;
-    public Button settingsButton;
-    public Button backButton;
     public Button exitButton;
     public Button pauseButton;
     public Button continueButton;
     public Button quitButton;
     private int score;
     public int highScore;
-    public GameObject titleScreen;
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
-    public GameObject settingsScreen;
+    public GameObject titleScreen;
     private float spawnRate = 1.0f;
     public int coinValue;
     public bool coinPowerup;
     public PlayerController playerController;
     public GameObject[] lives;
 
+    // Start is called before the first frame update
     void Start()
     {
-        // initialize game state
         score = 0;
         isGameActive = true;
         UpdateScore(0);
         LoadPlayer();
     }
 
+    // Update is called once per frame
     public void GameOver()
     {
-        // handle game over state
         gameOverScreen.gameObject.SetActive(true);
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
@@ -58,10 +54,10 @@ public class GameManager : MonoBehaviour
         }
         newHighScoreText.text = "New High Score: " + highScore;
     }
-    
+
+    // method to update the player's score and update the score text UI
     public void UpdateScore(int scoreToAdd)
     {
-        // update the player's score
         if (coinPowerup)
         {
             scoreToAdd *= 3;
@@ -70,116 +66,82 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    // method to restart the game by reloading the current scene
     public void RestartGame()
     {
-        // restart the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // method to exit the game and return to the main menu
     public void ExitGame()
     {
-        // exit the application
         Debug.Log("Exiting Game");
         Application.Quit();
         SceneManager.LoadScene("MainMenu");
     }
 
+    // method to start the game with a specified difficulty level, which adjusts the spawn rate of obstacles and power-ups
     public void StartGame(int difficulty)
     {
-        // set the difficulty and start the game
         spawnRate /= difficulty;
         isGameActive = true;
         titleScreen.gameObject.SetActive(false);
     }
 
-    public void PlayGame()
-    {
-        // load the main game scene
-        SceneManager.LoadScene("MainGame");
-        playButton.gameObject.SetActive(false);
-    }
-
-
-    public void OpenSettings()
-    {
-        // open the settings screen
-        settingsScreen.gameObject.SetActive(true);
-        titleScreen.gameObject.SetActive(false);
-        settingsButton.gameObject.SetActive(false);
-    }
-
-    public void BackToMain()
-    {
-        // return to the main title screen
-        settingsScreen.gameObject.SetActive(false);
-        titleScreen.gameObject.SetActive(true);
-        backButton.gameObject.SetActive(true);
-    }
-
-    public void TitleScreen()
-    {
-        // show the title screen
-        titleScreen.gameObject.SetActive(true);
-        gameOverScreen.gameObject.SetActive(false);
-        settingsScreen.gameObject.SetActive(false);
-        playButton.gameObject.SetActive(true);
-    }
-
+    // method to pause the game, which activates the pause screen UI and stops the game's time scale
     public void PauseGame()
     {
-        // pause the game
         pauseScreen.gameObject.SetActive(true);
         isGameActive = false;
         Time.timeScale = 0f;
     }
 
+    // method to display the pause screen UI when the game is paused
     public void PauseScreen()
     {
-        // show the pause screen
         pauseScreen.gameObject.SetActive(true);
         continueButton.gameObject.SetActive(true);
         quitButton.gameObject.SetActive(true);
     }
 
+    // method to continue the game from the paused state
     public void ContinueGame()
     {
-        // continue the game
         isGameActive = true;
         Time.timeScale = 1f;
         pauseScreen.gameObject.SetActive(false);
     }
 
+    // method to quit the current game and return to the main menu
     public void QuitToMain()
     {
-        // quit to the main title screen
         Time.timeScale = 1f;
         isGameActive = false;
         SceneManager.LoadScene("MainMenu");
     }
 
-
+    // method to activate the coin power-up effect, which triples the score gained from collecting coins
     public void ActivateCoinPowerup()
     {
-        // activate coin power-up
         coinPowerup = true;
     }
 
+    // method to deactivate the coin power-up effect after a certain duration
     public void DeactivateCoinPowerup()
     {
-        // deactivate coin power-up
         coinPowerup = false;
     }
 
+    // method to save the player's data, including the high score, using the SaveSystem class
     public void SavePlayer ()
     {
-        // save the player's data
         PlayerData playerData = new PlayerData(highScore);
         SaveSystem.SavePlayer(playerData);
-    }   
+    }
 
+    // method to load the player's data and update the high score
     public void LoadPlayer ()
     {
-        // load the player's data
         PlayerData playerData = SaveSystem.LoadPlayer();
         if (playerData != null)
         {
@@ -187,9 +149,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // method to update the player's lives and update the UI to reflect the current number of lives
     public void UpdateLives(int livesToAdd)
     {
-        // update the player's lives
         if (playerController.health <= 3)
         {
             playerController.health += livesToAdd;
@@ -199,7 +161,6 @@ public class GameManager : MonoBehaviour
             playerController.health = 3;
         }
 
-        // update the UI to reflect the current number of lives
         for (int i = 0; i < lives.Length; i++)
         {
             if (i < playerController.health)
