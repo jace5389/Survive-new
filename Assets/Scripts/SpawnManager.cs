@@ -17,14 +17,14 @@ public class SpawnManager : MonoBehaviour
     private float PowerupStartDelay = 11.5f;
     private float PowerupRepeatRate = 11.45f;
     private float ShieldStartDelay = 15.5f;
-    private float ShieldRepeatRate = 15.54f;
+    private float ShieldRepeatRate = 19.54f;
     private PlayerController playerControllerscript;
 
     // find the PlayerController script to check for game over state
     void Start()
     {
         playerControllerscript = GameObject.Find("Player").GetComponent<PlayerController>();
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+        InvokeRepeating("SpawnObstacle", startDelay, GameManager.spawnRate);
         InvokeRepeating("SpawnCoin", CoinStartDelay, CoinRepeatRate);
         InvokeRepeating("SpawnLife", LifeStartDelay, LifeRepeatRate);
         InvokeRepeating("SpawnPowerup", PowerupStartDelay, PowerupRepeatRate);

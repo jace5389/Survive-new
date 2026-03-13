@@ -89,4 +89,9 @@ public class MainManager : MonoBehaviour
         AudioManager.instance.ChangeSoundVolume(soundLevel);
         PreferencesManager.SetSoundVolume(soundLevel);
     }
+
+    public void SetDifficulty(int diff)
+    {
+        GameManager.spawnRate = diff;
+    }
 }

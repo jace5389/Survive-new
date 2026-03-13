@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
     public GameObject titleScreen;
-    private float spawnRate = 1.0f;
+    public static float spawnRate = 1.0f;
     public int coinValue;
     public bool coinPowerup;
     public PlayerController playerController;
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
-        isGameActive = true;
+        StartGame();
         UpdateScore(0);
         LoadPlayer();
     }
@@ -45,14 +45,14 @@ public class GameManager : MonoBehaviour
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
 
-        highScoreText.text = "Final Score: " + score;
+        highScoreText.text = " Score: " + score;
         if (score > highScore)
         {
           highScore = score;
           newHighScoreText.gameObject.SetActive(true);
           SavePlayer();
         }
-        newHighScoreText.text = "New High Score: " + highScore;
+        newHighScoreText.text = " High Score: " + highScore;
     }
 
     // method to update the player's score and update the score text UI
@@ -81,11 +81,9 @@ public class GameManager : MonoBehaviour
     }
 
     // method to start the game with a specified difficulty level, which adjusts the spawn rate of obstacles and power-ups
-    public void StartGame(int difficulty)
+    public void StartGame()
     {
-        spawnRate /= difficulty;
         isGameActive = true;
-        titleScreen.gameObject.SetActive(false);
     }
 
     // method to pause the game, which activates the pause screen UI and stops the game's time scale
