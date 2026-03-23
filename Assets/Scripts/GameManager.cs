@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public Button pauseButton;
     public Button continueButton;
     public Button quitButton;
-    private int score;
     public int highScore;
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
@@ -27,7 +26,8 @@ public class GameManager : MonoBehaviour
     public bool coinPowerup;
     public PlayerController playerController;
     public GameObject[] lives;
-
+    private int score;
+   
     // Start is called before the first frame update
     void Start()
     {

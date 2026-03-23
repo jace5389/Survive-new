@@ -4416,7 +4416,7 @@ RectTransform:
   m_GameObject: {fileID: 55770869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.3372729, z: 1}
+  m_LocalScale: {x: 1.5382, y: 2.0332928, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1095139371}
@@ -4424,7 +4424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 27}
+  m_AnchoredPosition: {x: 0, y: 8.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &55770871
@@ -63528,7 +63528,7 @@ RectTransform:
   m_GameObject: {fileID: 749281977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5629, z: 1}
+  m_LocalScale: {x: 1.5382, y: 2.3763535, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 950512160}
@@ -81152,7 +81152,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 32
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -91468,7 +91468,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -143169,7 +143169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1715216227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143217,7 +143217,7 @@ RectTransform:
   m_GameObject: {fileID: 1715216226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0055, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1767720898}
@@ -176528,6 +176528,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9357a9ea0b4db214380c7fd55bf0095e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  timerText: {fileID: 0}
+  powerupText: {fileID: 0}
+  shieldVisual: {fileID: 0}
+  anim: {fileID: 8533586141112254668}
+  gameManager: {fileID: 501249166}
+  playerState: 0
   jumpForce: 5
   gravityModifier: 1
   shieldDuration: 5
@@ -176539,12 +176545,6 @@ MonoBehaviour:
   hasPowerup: 0
   hasShield: 0
   health: 3
-  timerText: {fileID: 0}
-  powerupText: {fileID: 0}
-  shieldVisual: {fileID: 0}
-  anim: {fileID: 8533586141112254668}
-  gameManager: {fileID: 501249166}
-  playerState: 0
 --- !u!33 &3722095326854224148
 MeshFilter:
   m_ObjectHideFlags: 0

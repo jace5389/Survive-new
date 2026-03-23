@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Coroutine shieldCoroutine;
     private Coroutine powerupCoroutine;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI powerupText;
+    public GameObject shieldVisual;
+    public Animator anim;
+    public GameManager gameManager;
+    public PlayerState playerState;
     public float jumpForce;
     public float gravityModifier;
     public float shieldDuration = 10f;
@@ -24,12 +30,6 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     float horizontalInput;
     bool hasJumped = false;
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI powerupText;
-    public GameObject shieldVisual;
-    public Animator anim;
-    public GameManager gameManager;
-    public PlayerState playerState;
     internal static object instance;
    
     // reference to animator and game manager
