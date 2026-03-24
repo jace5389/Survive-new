@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject[] lives;
     private int score;
-   
-    // Start is called before the first frame update
+
+    // Start is called before the first frame update, which initializes the game state, score, and loads the player's data
     void Start()
     {
         score = 0;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         LoadPlayer();
     }
 
-    // Update is called once per frame
+    // method to handle the game over state, which activates the game over screen UI and displays the player's final score and high score
     public void GameOver()
     {
         gameOverScreen.gameObject.SetActive(true);
