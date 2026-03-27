@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10.0f;
+    private float speed = 1000.0f;
     private Rigidbody playerRb;
     private Coroutine shieldCoroutine;
     private Coroutine powerupCoroutine;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             hasJumped = false;
             SetPlayerState(PlayerState.Jump);
         }
-        playerRb.AddForce(Vector3.right * speed * horizontalInput);
+        playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime);
     }
 
     // detect collision with ground to reset jump and update player state
