@@ -75,8 +75,6 @@ public class GameManager : MonoBehaviour
     // method to exit the game and return to the main menu
     public void ExitGame()
     {
-        Debug.Log("Exiting Game");
-        Application.Quit();
         SceneManager.LoadScene("MainMenu");
     }
 
