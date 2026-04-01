@@ -21,8 +21,8 @@ public class Powerup : MonoBehaviour
         {
             GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.ActivateCoinPowerup();
-            other.GetComponent<PlayerController>().ActivatePowerup();
             gameManager.Invoke("DeactivateCoinPowerup", 10f);
+            other.GetComponent<PlayerController>().ActivatePowerup();
             Destroy(gameObject);
         }
     }
