@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(restartButton.gameObject);
 
         highScoreText.text = " Score: " + score;
         if (score > highScore)
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         pauseScreen.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
         isGameActive = false;
         Time.timeScale = 0f;
     }

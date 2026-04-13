@@ -219,4 +219,15 @@ public class PlayerController : MonoBehaviour
     {
         hasJumped = value;
     }
+
+    public void OnPause(InputValue inputValue)
+    {
+        gameManager.PauseGame();
+    }
+
+    // alternative method for jump input action to allow for different input types
+    public void PauseInput(bool value)
+    {
+        gameManager.PauseGame();
+    }
 }

@@ -544,6 +544,9 @@ PlayerSettings:
   - m_BuildTarget: WebGL
     m_StaticBatching: 0
     m_DynamicBatching: 0
+  - m_BuildTarget: Windows Store Apps
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -873,13 +876,21 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Survive
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: GCTC
+  metroCertificateIssuer: GCTC
+  metroCertificateNotAfter: 00848c2979eadd01
   metroApplicationDescription: Survive
-  wsaImages: {}
+  wsaImages:
+    65636: Assets/Sprites/Icon-50.png
+    131272: Assets/Sprites/Logo.png
+    2031640: Assets/Sprites/Icon-24.png
+    2031816: Assets/Sprites/Icon - 88.png
+    2097352: Assets/Sprites/Icon-142.png
+    2162888: Assets/Sprites/Icon-300.png
+    2228424: Assets/Sprites/Icon-620.png
+    2293960: Assets/Sprites/Icon-620x 1.png
   metroTileShortName: Survive
   metroTileShowName: 0
   metroMediumTileShowName: 0
